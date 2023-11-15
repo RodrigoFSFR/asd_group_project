@@ -1,2 +1,2 @@
-# asd_group_project
+# ASD Group Project
 Group project for the Advanced Software Development module
