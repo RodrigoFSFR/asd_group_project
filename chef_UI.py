@@ -28,7 +28,7 @@ def profileWindow():
     profileWindow.title("Profile Page")
  
     profileWindow.geometry("410x500+700+100")
-    # profileWindow.resizable(False, False)
+    profileWindow.resizable(False, False)
 
     profileWindow.columnconfigure(0, weight=1)
     profileWindow.rowconfigure(0, weight=0)
@@ -62,10 +62,6 @@ def Exit ():
     window.quit()
 
 ButtonExit = tk.Button(window, text="Exit", width=40, command=Exit, font=("Sans-serif", 16))
-
-Grid.rowconfigure(window, 0, weight=0)
-Grid.columnconfigure(window, 0, weight=2)
-
 
 ButtonProfile.grid(row=0, column=1, sticky="E")
 ButtonOrders.grid(row=2, column=1, sticky="E")
