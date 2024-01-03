@@ -60,8 +60,13 @@ ButtonManageStaff = tk.Button(
     window, width=40, text="Manage Staff", font=("Sans-serif", 16)
 )
 ButtonOrders = tk.Button(window, text="Orders", width=40, font=("Sans-serif", 16))
+
+def openReservation():
+    window.destroy()
+    import reservation
+
 ButtonReservations = tk.Button(
-    window, text="Reservations", width=40, font=("Sans-serif", 16)
+    window, text="Reservations", width=40, font=("Sans-serif", 16), command=openReservation
 )
 
 # Exit function for the exit button

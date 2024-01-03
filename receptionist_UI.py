@@ -54,8 +54,13 @@ def profileWindow():
     ButtonExit.grid(row=5, column=0, sticky="n")
 
 ButtonProfile = tk.Button(window, width=40, command=profileWindow, text="Profile", font=("Sans-serif", 16))
+
+def openReservation():
+    window.destroy()
+    import reservation
+
 ButtonReservations = tk.Button(
-    window, text="Reservations", width=40, font=("Sans-serif", 16)
+    window, text="Reservations", width=40, command=openReservation, font=("Sans-serif", 16)
 )
 
 # Exit function for the exit button

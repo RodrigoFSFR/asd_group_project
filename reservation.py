@@ -70,6 +70,8 @@ def reserve_button_clicked():
 # Create reservation window
 reservation_window = Tk()
 reservation_window.title("Make a Reservation")
+reservation_window.geometry("270x340+800+100")
+reservation_window.resizable(False, False)
 
 # Add name entry, date picker, time entry, people entry, and seating choice
 name_label = Label(reservation_window, text="Name:")
@@ -110,11 +112,11 @@ seating_menu.grid(row=4, column=1, padx=10, pady=10)
 reserve_button = Button(reservation_window, text="Reserve", command=reserve_button_clicked)
 reserve_button.grid(row=5, column=0, columnspan=2, pady=10)
 
-# Exit function for the exit button
+# Returns to the main 
 def Exit():
-    reservation_window.quit()
+    reservation_window.destroy()
 
-ButtonExit = tk.Button(reservation_window, text="Exit", width=40, command=Exit, font=("Sans-serif", 16))
+ButtonExit = tk.Button(reservation_window, text="Exit", width=20, command=Exit, font=("Sans-serif", 16))
 ButtonExit.grid(row=6, column=0, columnspan=2, pady=10)
 
 reservation_window.mainloop()
