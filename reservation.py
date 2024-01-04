@@ -36,7 +36,14 @@ def validate_date_entry():
         return False
     return True
 
-def make_reservation(name, date, time, people, seating):
+def validate_phone_entry():
+    phone = phone_entry.get()
+    if not phone.isdigit():
+        messagebox.showinfo("Invalid Phone Number", "Please enter digits only for the phone number.")
+        return False
+    return True
+
+def make_reservation(name, date, time, people, seating, phone):
     # Check if the chosen date and time slot is available in the in-memory list
     for reservation in reservations:
         if reservation['date'] == date and reservation['time'] == time:
@@ -44,7 +51,7 @@ def make_reservation(name, date, time, people, seating):
             return
 
     # Insert the reservation into the in-memory list
-    reservations.append({'name': name, 'date': date, 'time': time, 'people': people, 'seating': seating})
+    reservations.append({'name': name, 'date': date, 'time': time, 'people': people, 'seating': seating, 'phone': phone})
     messagebox.showinfo("Reservation Successful", "Your reservation has been confirmed!")
 
 def reserve_button_clicked():
@@ -53,9 +60,10 @@ def reserve_button_clicked():
     chosen_time = time_var.get()
     chosen_people = people_var.get()
     chosen_seating = seating_var.get()
+    chosen_phone = phone_entry.get()  # New line to get phone number
 
     # Check if any field is empty
-    if not all([chosen_name, chosen_date, chosen_time, chosen_people, chosen_seating]):
+    if not all([chosen_name, chosen_date, chosen_time, chosen_people, chosen_seating, chosen_phone]):
         messagebox.showinfo("Empty Fields", "Please fill in all fields.")
         return
 
@@ -63,60 +71,65 @@ def reserve_button_clicked():
     if not validate_date_entry():
         return
 
-    # Check if the time and people entries are valid
-    if validate_time_entry() and validate_people_entry():
-        make_reservation(chosen_name, chosen_date, chosen_time, int(chosen_people), chosen_seating)
+    # Check if the time, people, phone number entries are valid
+    if validate_time_entry() and validate_people_entry() and validate_phone_entry():
+        make_reservation(chosen_name, chosen_date, chosen_time, int(chosen_people), chosen_seating, chosen_phone)
 
 # Create reservation window
 reservation_window = Tk()
 reservation_window.title("Make a Reservation")
-reservation_window.geometry("270x340+800+100")
+reservation_window.geometry("270x400+800+100")
 reservation_window.resizable(False, False)
 
-# Add name entry, date picker, time entry, people entry, and seating choice
+# Add name entry, date picker, time entry, people entry, seating choice, and phone number entry
 name_label = Label(reservation_window, text="Name:")
 name_label.grid(row=0, column=0, padx=10, pady=10)
 name_entry = Entry(reservation_window)
 name_entry.grid(row=0, column=1, padx=10, pady=10)
 
+phone_label = Label(reservation_window, text="Phone Number:")
+phone_label.grid(row=1, column=0, padx=10, pady=10)
+phone_entry = Entry(reservation_window)
+phone_entry.grid(row=1, column=1, padx=10, pady=10)
+
 date_label = Label(reservation_window, text="Select Date:")
-date_label.grid(row=1, column=0, padx=10, pady=10)
+date_label.grid(row=2, column=0, padx=10, pady=10)
 date_entry = DateEntry(reservation_window, width=12, background='darkblue', foreground='white', borderwidth=2)
-date_entry.grid(row=1, column=1, padx=10, pady=10)
+date_entry.grid(row=2, column=1, padx=10, pady=10)
 
 time_label = Label(reservation_window, text="Select Time:")
-time_label.grid(row=2, column=0, padx=10, pady=10)
+time_label.grid(row=3, column=0, padx=10, pady=10)
 
 # List of available times
 available_times = ["10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00"]
 time_var = StringVar()
 time_menu = OptionMenu(reservation_window, time_var, *available_times)
-time_menu.grid(row=2, column=1, padx=10, pady=10)
+time_menu.grid(row=3, column=1, padx=10, pady=10)
 
 people_label = Label(reservation_window, text="Number of People:")
-people_label.grid(row=3, column=0, padx=10, pady=10)
+people_label.grid(row=4, column=0, padx=10, pady=10)
 
 # List of available number of people
 people_list = list(range(1, 21))
 people_var = StringVar()
 people_menu = OptionMenu(reservation_window, people_var, *people_list)
-people_menu.grid(row=3, column=1, padx=10, pady=10)
+people_menu.grid(row=4, column=1, padx=10, pady=10)
 
 seating_label = Label(reservation_window, text="Seating Preference:")
-seating_label.grid(row=4, column=0, padx=10, pady=10)
+seating_label.grid(row=5, column=0, padx=10, pady=10)
 seating_var = StringVar()
 seating_choices = ['Indoor', 'Outdoor']
 seating_menu = OptionMenu(reservation_window, seating_var, *seating_choices)
-seating_menu.grid(row=4, column=1, padx=10, pady=10)
+seating_menu.grid(row=5, column=1, padx=10, pady=10)
 
 reserve_button = Button(reservation_window, text="Reserve", command=reserve_button_clicked)
-reserve_button.grid(row=5, column=0, columnspan=2, pady=10)
+reserve_button.grid(row=6, column=0, columnspan=2, pady=10)
 
-# Returns to the main 
+# Returns to the main
 def Exit():
     reservation_window.destroy()
 
 ButtonExit = tk.Button(reservation_window, text="Exit", width=20, command=Exit, font=("Sans-serif", 16))
-ButtonExit.grid(row=6, column=0, columnspan=2, pady=10)
+ButtonExit.grid(row=7, column=0, columnspan=2, pady=10)
 
 reservation_window.mainloop()
