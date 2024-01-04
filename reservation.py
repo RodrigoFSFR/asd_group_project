@@ -60,7 +60,7 @@ def reserve_button_clicked():
     chosen_time = time_var.get()
     chosen_people = people_var.get()
     chosen_seating = seating_var.get()
-    chosen_phone = phone_entry.get()  # New line to get phone number
+    chosen_phone = phone_entry.get()  
 
     # Check if any field is empty
     if not all([chosen_name, chosen_date, chosen_time, chosen_people, chosen_seating, chosen_phone]):
@@ -73,7 +73,7 @@ def reserve_button_clicked():
 
     # Check if the time, people, phone number entries are valid
     if validate_time_entry() and validate_people_entry() and validate_phone_entry():
-        make_reservation(chosen_name, chosen_date, chosen_time, int(chosen_people), chosen_seating, chosen_phone)
+        make_reservation(chosen_name, chosen_date, chosen_time, int(chosen_people), int(chosen_seating), chosen_phone)
 
 # Create reservation window
 reservation_window = Tk()
@@ -115,10 +115,10 @@ people_var = StringVar()
 people_menu = OptionMenu(reservation_window, people_var, *people_list)
 people_menu.grid(row=4, column=1, padx=10, pady=10)
 
-seating_label = Label(reservation_window, text="Seating Preference:")
+seating_label = Label(reservation_window, text="Table Number:")
 seating_label.grid(row=5, column=0, padx=10, pady=10)
-seating_var = StringVar()
-seating_choices = ['Indoor', 'Outdoor']
+seating_var = IntVar()
+seating_choices = list(range(1, 11))
 seating_menu = OptionMenu(reservation_window, seating_var, *seating_choices)
 seating_menu.grid(row=5, column=1, padx=10, pady=10)
 
