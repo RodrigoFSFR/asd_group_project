@@ -3,7 +3,6 @@ from tkinter import messagebox
 from tkcalendar import DateEntry
 import tkinter as tk
 from datetime import datetime
-from flask import Flask, request, jsonify
 import requests, os
 
 # In-memory reservation list
@@ -102,7 +101,6 @@ def make_reservation(name, date, time, people, seating, phone):
 
     except requests.RequestException as e:
         print("Error:", e)
-        # Handle connection errors or other exceptions
 
 
 def reserve_button_clicked():
