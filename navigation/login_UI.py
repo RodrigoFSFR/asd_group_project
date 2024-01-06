@@ -5,17 +5,17 @@ from PIL import ImageTk, Image
 
 w = Tk()
 
-w.title("Chef Page")
+w.title("Login Page")
 
 w.geometry("600x210+600+100")
 w.resizable(False, False)
 
 welcomeText = Label(w, text="Welcome", font=("Sans-serif", 18))
-welcomeText.grid(padx= 101, sticky="w")
+welcomeText.grid(padx=101, sticky="w")
 
-logo = tk.PhotoImage(file="logoSVG.png")
+logo = tk.PhotoImage(file=".\images\logoSVG.png")
 
-#resize the image to fit the screen better
+# resize the image to fit the screen better
 logo_resize = logo.subsample(2, 2)
 
 smallLogo = Label(w, image=logo_resize)
@@ -30,11 +30,12 @@ auth = BooleanVar()
 
 auth = False
 
+
 def loginPressed():
-    if auth == False: 
-      messagebox.showinfo("Alert!","Login Failed!")
+    if auth == False:
+        messagebox.showinfo("Alert!", "Login Failed!")
     else:
-      messagebox.showinfo("Alert!","Login Successful!")
+        messagebox.showinfo("Alert!", "Login Successful!")
 
 
 # username entry field
@@ -50,7 +51,7 @@ passEntry = Entry(bd=2, show="*", textvariable=passStr)
 passEntry.grid(row=3, column=2)
 
 # login button
-loginButton = Button(master=w, text="OK",command=loginPressed)
+loginButton = Button(master=w, text="OK", command=loginPressed)
 loginButton.grid(row=4, column=2, pady=10)
 
 w.mainloop()
