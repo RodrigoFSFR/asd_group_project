@@ -13,7 +13,7 @@ w.resizable(False, False)
 welcomeText = Label(w, text="Welcome", font=("Sans-serif", 18))
 welcomeText.grid(padx=101, sticky="w")
 
-logo = tk.PhotoImage(file=".\images\logoSVG.png")
+logo = tk.PhotoImage(file="./images/logoSVG.png")
 
 # resize the image to fit the screen better
 logo_resize = logo.subsample(2, 2)
