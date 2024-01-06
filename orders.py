@@ -4,13 +4,14 @@ from tkinter import ttk
 class ChefPage:
     def __init__(self, master):
         self.master = master
-        self.master.title("Chef Page")
-        self.master.geometry("400x300")
+        self.master.title("Orders Page")
+        self.master.geometry("340x300+760+100")
+        self.master.resizable(False, False)
         
         self.style = ttk.Style()
         self.style.configure("TFrame", padding=10)
-        self.style.configure("TLabel", font=("Helvetica", 14))
-        self.style.configure("TButton", padding=5, font=("Helvetica", 12))
+        self.style.configure("TLabel", font=("Sans-serif", 16))
+        self.style.configure("TButton", padding=5, font=("Sans-serif", 16))
         
         self.create_widgets()
 
