@@ -1,0 +1,8 @@
+{
+    "python.analysis.extraPaths": [
+        "./receptionist",
+        "./manager",
+        "./chef",
+        "./waitstaff"
+    ]
+}
