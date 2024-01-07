@@ -6,12 +6,12 @@ class PaymentPage:
     def __init__(self, master):
         self.master = master
         self.master.title("Payment Page")
-        self.master.geometry("400x300")
+        self.master.geometry("420x300+500+100")
         
         self.style = ttk.Style()
         self.style.configure("TFrame", padding=10)
-        self.style.configure("TLabel", font=("Helvetica", 12))
-        self.style.configure("TButton", padding=5, font=("Helvetica", 12))
+        self.style.configure("TLabel", font=("Sans-serif", 18))
+        self.style.configure("TButton", padding=5, font=("Sans-serif", 16))
 
         self.create_widgets()
 
@@ -21,7 +21,7 @@ class PaymentPage:
         self.frm.grid(row=0, column=0, padx=10, pady=10, sticky=(tk.N, tk.S, tk.E, tk.W))
 
         # Title label
-        ttk.Label(self.frm, text="Enter Card Details", style="TLabel").grid(column=0, row=0, columnspan=2, pady=10)
+        ttk.Label(self.frm, text="Enter Card Details:", style="TLabel").grid(column=0, row=0, columnspan=2, pady=10)
 
         # Cardholder's Name label and entry
         ttk.Label(self.frm, text="Cardholder's Name:", style="TLabel").grid(column=0, row=1, pady=5, sticky=tk.E)
@@ -40,6 +40,7 @@ class PaymentPage:
 
         # Process Payment button
         ttk.Button(self.frm, text="Process Payment", command=self.process_payment, style="TButton").grid(column=0, row=4, columnspan=2, pady=10)
+        ttk.Button(self.frm, text="Quit", command=self.quit, style="TButton").grid(column=0, row=5, columnspan=2)
 
         # Set column and row weights
         self.frm.columnconfigure(0, weight=1)
@@ -56,6 +57,9 @@ class PaymentPage:
             return
 
         messagebox.showinfo("Payment Successful", "Payment processed successfully!")
+    
+    def quit(self):
+        self.master.destroy()
 
 if __name__ == "__main__":
     root = tk.Tk()
