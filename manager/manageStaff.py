@@ -13,18 +13,31 @@ delete_staff_url = os.getenv("delete-staff", "http://localhost:8080/delete-staff
 
 
 def deleteStaff(staffMember):
+    name = staffMember["name"]
+    id = staffMember["staffId"]
+
     myRequest = {
-        "staffId": staffMember.get("id"),
+        "staffId": id,
     }
 
     try:
         response = requests.delete(delete_staff_url, json=myRequest)
         # Check if the request was successful
         if not (response.ok):
-            messagebox.showerror("Failed", "Could not delete staff member")
+            messagebox.showerror("Failed", f"Could not delete {name} (ID: {id})")
+            return
+
+        messagebox.showinfo("Success", f"Deleted {name} (ID: {id})")
+
+        deleteButton.grid_remove()
+        nameLabel.grid_remove()
+        
+        displayStaffList()
 
     except requests.RequestException as e:
         messagebox.showerror("Error:", e)
+
+    return
 
 
 def getStaffList():
@@ -47,23 +60,13 @@ def getStaffList():
     return
 
 
-getStaffList()
-
-
 # Function to display the staff list
 def displayStaffList():
-    # Create a Text widget to display the staff list
-    staffListText = Text(window, height=20, width=30)
-    staffListText.grid(row=0, column=0, columnspan=2, pady=10)
+    getStaffList()
 
     # Insert each staff member into the Text widget
     for staffMember in staffList:
-        if "position" in staffMember:
-            staffListText.insert(
-                END, f"{staffMember['name']} ({staffMember['position']})\n"
-            )
-        else:
-            staffListText.insert(END, f"{staffMember['name']}\n")
+        global deleteButton
 
         # Add a button to delete the staff member
         deleteButton = Button(
@@ -73,9 +76,19 @@ def displayStaffList():
         )
         deleteButton.grid(row=staffList.index(staffMember) + 1, column=1, padx=5)
 
+        global nameLabel
+
         # Add a label for the staff member's name
-        nameLabel = Label(window, text=staffMember["name"])
+        nameLabel = Label(
+            window,
+            text=staffMember["name"]
+            + " | "
+            + staffMember["role"]
+            + " | ID: "
+            + str(staffMember["staffId"]),
+        )
         nameLabel.grid(row=staffList.index(staffMember) + 1, column=0, padx=5)
+
 
 # Create a button to display the staff list
 ButtonDisplayStaffList = tk.Button(
