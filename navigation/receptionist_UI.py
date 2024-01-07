@@ -17,7 +17,7 @@ window.resizable(False, False)
 welcomeText = Label(window, text="Welcome, Username", font=("Sans-serif", 18))
 welcomeText.grid(padx= 40, sticky="w")
 
-logo = tk.PhotoImage(file="./images/logoSVG.png")
+logo = tk.PhotoImage(file="asd_group_project/images/logoSVG.png")
 
 #resize the image to fit the screen better
 logo_resize = logo.subsample(2, 2)
@@ -36,7 +36,7 @@ def profileWindow():
     profileWindow.columnconfigure(0, weight=1)
     profileWindow.rowconfigure(0, weight=0)
  
-    userLogo = tk.PhotoImage(file="./images/user.png")
+    userLogo = tk.PhotoImage(file="asd_group_project/images/user.png")
     label = Label(profileWindow, image=userLogo)
     label.img = userLogo
     label.grid(row=1, column=0)

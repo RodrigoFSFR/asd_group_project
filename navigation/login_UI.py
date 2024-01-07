@@ -15,7 +15,7 @@ w.resizable(False, False)
 welcomeText = Label(w, text="Welcome", font=("Sans-serif", 18))
 welcomeText.grid(padx=101, sticky="w")
 
-logo = tk.PhotoImage(file="./images/logoSVG.png")
+logo = tk.PhotoImage(file="asd_group_project/images/logoSVG.png")
 
 # resize the image to fit the screen better
 logo_resize = logo.subsample(2, 2)
@@ -53,7 +53,7 @@ passEntry = Entry(bd=2, show="*", textvariable=passStr)
 passEntry.grid(row=3, column=2)
 
 # login button
-loginButton = Button(master=w, text="OK", command=loginPressed)
+loginButton = Button(master=w, text="OK", command=loginPressed, font=("Sans-serif", 16))
 loginButton.grid(row=4, column=2, pady=10)
 
 w.mainloop()
