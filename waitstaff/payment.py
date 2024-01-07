@@ -1,3 +1,5 @@
+# Seif
+
 import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
@@ -10,8 +12,8 @@ class PaymentPage:
         
         self.style = ttk.Style()
         self.style.configure("TFrame", padding=10)
-        self.style.configure("TLabel", font=("Helvetica", 12))
-        self.style.configure("TButton", padding=5, font=("Helvetica", 12))
+        self.style.configure("TLabel", font=("Sans-serif", 18))
+        self.style.configure("TButton", padding=5, font=("Sans-serif", 16))
 
         self.ordered_items = []
 

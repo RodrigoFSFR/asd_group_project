@@ -1,6 +1,9 @@
+# Guilherme
+
 from tkinter import *
 import tkinter as tk
 from PIL import ImageTk, Image
+import sys
 
 window = tk.Tk()
 
@@ -13,7 +16,7 @@ window.resizable(False, False)
 welcomeText = Label(window, text="Welcome, Username", font=("Sans-serif", 18))
 welcomeText.grid(padx=40, sticky="w")
 
-logo = tk.PhotoImage(file="./images/logoSVG.png")
+logo = tk.PhotoImage(file="asd_group_project/images/logoSVG.png")
 
 # resize the image to fit the screen better
 logo_resize = logo.subsample(2, 2)
@@ -32,7 +35,7 @@ def profileWindow():
     profileWindow.columnconfigure(0, weight=1)
     profileWindow.rowconfigure(0, weight=0)
 
-    userLogo = tk.PhotoImage(file="./images/user.png")
+    userLogo = tk.PhotoImage(file="asd_group_project/images/user.png")
     label = Label(profileWindow, image=userLogo)
     label.img = userLogo
     label.grid(row=1, column=0)
@@ -62,7 +65,9 @@ ButtonProfile = tk.Button(
 
 def openManageStaff():
     window.destroy()
-    import asd_group_project.manager.manageStaff as manageStaff
+    sys.path.insert(0, './manager')
+    import manageStaff
+    manageStaff.main()
 
 
 ButtonManageStaff = tk.Button(
@@ -72,13 +77,22 @@ ButtonManageStaff = tk.Button(
     command=openManageStaff,
     font=("Sans-serif", 16),
 )
-ButtonOrders = tk.Button(window, text="Orders", width=40, font=("Sans-serif", 16))
+
+def openOrders():
+    window.destroy()
+    sys.path.insert(0, './chef')
+    import orders
+    orders.main() 
+    # Not Working
+
+ButtonOrders = tk.Button(window, text="Orders", command=openOrders, width=40, font=("Sans-serif", 16))
 
 
 def openReservation():
     window.destroy()
-    import asd_group_project.receptionist.reservation as reservation
-
+    sys.path.insert(0, './receptionist')
+    import reservation
+    reservation.main()
 
 ButtonReservations = tk.Button(
     window,

@@ -1,6 +1,9 @@
+# Guilherme
+
 from tkinter import *
 import tkinter as tk
 from PIL import ImageTk, Image
+import sys
 
 window = tk.Tk()
 
@@ -57,7 +60,10 @@ ButtonProfile = tk.Button(window, width=40, command=profileWindow, text="Profile
 
 def openReservation():
     window.destroy()
-    import asd_group_project.receptionist.reservation as reservation
+    sys.path.insert(0, './receptionist')
+    import reservation
+    reservation.main()
+
 
 ButtonReservations = tk.Button(
     window, text="Reservations", width=40, command=openReservation, font=("Sans-serif", 16)
