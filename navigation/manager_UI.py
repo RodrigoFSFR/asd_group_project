@@ -1,6 +1,7 @@
 from tkinter import *
 import tkinter as tk
 from PIL import ImageTk, Image
+import sys
 
 window = tk.Tk()
 
@@ -62,7 +63,9 @@ ButtonProfile = tk.Button(
 
 def openManageStaff():
     window.destroy()
-    import asd_group_project.manager.manageStaff as manageStaff
+    sys.path.insert(0, './manager')
+    import manageStaff
+    manageStaff.main()
 
 
 ButtonManageStaff = tk.Button(
@@ -72,13 +75,22 @@ ButtonManageStaff = tk.Button(
     command=openManageStaff,
     font=("Sans-serif", 16),
 )
-ButtonOrders = tk.Button(window, text="Orders", width=40, font=("Sans-serif", 16))
+
+def openOrders():
+    window.destroy()
+    sys.path.insert(0, './chef')
+    import orders
+    orders.main() 
+    # Not Working
+
+ButtonOrders = tk.Button(window, text="Orders", command=openOrders, width=40, font=("Sans-serif", 16))
 
 
 def openReservation():
     window.destroy()
-    import asd_group_project.receptionist.reservation as reservation
-
+    sys.path.insert(0, './receptionist')
+    import reservation
+    reservation.main()
 
 ButtonReservations = tk.Button(
     window,

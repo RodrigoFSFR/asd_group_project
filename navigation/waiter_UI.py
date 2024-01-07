@@ -1,6 +1,7 @@
 from tkinter import *
 import tkinter as tk
 from PIL import ImageTk, Image
+import sys
 
 window = tk.Tk()
 
@@ -53,9 +54,25 @@ def profileWindow():
     ButtonExit.grid(row=5, column=0, sticky="n")
 
 ButtonProfile = tk.Button(window, width=40, command=profileWindow, text="Profile", font=("Sans-serif", 16))
+
+def openTakeOrders():
+    window.destroy()
+    sys.path.insert(0, './waitstaff')
+    import taking_order
+    taking_order.main() 
+    # Not Working
+
 ButtonTakeOrders = tk.Button(window, text="Take Orders", width=40, font=("Sans-serif", 16))
+
+def openPayment():
+    window.destroy()
+    sys.path.insert(0, './waitstaff')
+    import payment
+    payment.main() 
+    # Not Working
+
 ButtonPayment = tk.Button(
-    window, text="Payment", width=40, font=("Sans-serif", 16)
+    window, text="Payment", command=openPayment, width=40, font=("Sans-serif", 16)
 )
 
 # Exit function for the exit button

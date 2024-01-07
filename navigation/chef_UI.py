@@ -1,6 +1,7 @@
 from tkinter import *
 import tkinter as tk
 from PIL import ImageTk, Image
+import sys
 
 window = tk.Tk()
 
@@ -59,7 +60,14 @@ ButtonProfile = tk.Button(
     window, width=40, text="Profile", command=profileWindow, font=("Sans-serif", 16)
 )
 
-ButtonOrders = tk.Button(window, text="Orders", width=40, font=("Sans-serif", 16))
+def openOrders():
+    window.destroy()
+    sys.path.insert(0, './chef')
+    import orders
+    orders.main() 
+    # Not Working
+
+ButtonOrders = tk.Button(window, command=openOrders, text="Orders", width=40, font=("Sans-serif", 16))
 
 
 # Exit function for the exit button
