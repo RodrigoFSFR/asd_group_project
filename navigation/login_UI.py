@@ -15,7 +15,14 @@ w.resizable(False, False)
 welcomeText = Label(w, text="Welcome", font=("Sans-serif", 18))
 welcomeText.grid(padx=101, sticky="w")
 
-logo = tk.PhotoImage(file="asd_group_project/images/logoSVG.png")
+# gets the relative image paths
+main_dir = os.path.dirname(__file__)
+logo_rel = "../images/logoSVG.png"
+user_rel = "../images/user.png"
+logo_path = os.path.join(main_dir, logo_rel)
+user_path = os.path.join (main_dir, user_rel)
+
+logo = tk.PhotoImage(file=logo_path)
 
 # resize the image to fit the screen better
 logo_resize = logo.subsample(2, 2)

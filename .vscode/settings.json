@@ -3,6 +3,7 @@
         "./receptionist",
         "./manager",
         "./chef",
-        "./waitstaff"
+        "./waitstaff",
+        "./images"
     ]
 }
