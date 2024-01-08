@@ -4,7 +4,7 @@ from tkinter import *
 import tkinter as tk
 from tkinter import messagebox
 from PIL import ImageTk, Image
-import os
+import os, requests
 
 w = Tk()
 
@@ -21,7 +21,7 @@ main_dir = os.path.dirname(__file__)
 logo_rel = "../images/logoSVG.png"
 user_rel = "../images/user.png"
 logo_path = os.path.join(main_dir, logo_rel)
-user_path = os.path.join (main_dir, user_rel)
+user_path = os.path.join(main_dir, user_rel)
 
 logo = tk.PhotoImage(file=logo_path)
 
@@ -38,14 +38,26 @@ passStr = StringVar()
 # authentication variable
 auth = BooleanVar()
 
-auth = False
-
 
 def loginPressed():
-    if auth == False:
-        messagebox.showinfo("Alert!", "Login Failed!")
-    else:
-        messagebox.showinfo("Alert!", "Login Successful!")
+    login_URL = os.getenv("login", "http://localhost:8080/login")
+    auth = False
+
+    staffId = int(userStr.get())
+    password = passStr.get()
+    body = {"staffId": staffId, "password": password}
+
+    try:
+        request = requests.post(login_URL, json=body)
+        if request.ok:
+            auth = True
+
+        if auth == False:
+            messagebox.showinfo("Alert!", "Login Failed!")
+        else:
+            messagebox.showinfo("Alert!", "Login Successful!")
+    except requests.RequestException as e:
+        messagebox.showerror("Error:", e)
 
 
 # username entry field
