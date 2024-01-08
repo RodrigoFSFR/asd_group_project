@@ -102,7 +102,7 @@ def make_reservation(name, date, time, people, seating, phone):
             return
 
     except requests.RequestException as e:
-        print("Error:", e)
+        messagebox.showerror("Error:", e)
 
 
 def reserve_button_clicked():
